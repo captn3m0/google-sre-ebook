@@ -10,4 +10,6 @@ Review and run the `bootstrap.sh` script to generate the EPUB.
 
 **Note**: Currently relies on python2 and pip to install dependencies
 and does not setup a virtualenv. Please review the script and edit
-as per your needs.
+as per your needs. If you have [direnv](https://direnv.net/)
+installed, it will set up the virtualenv for you after you run
+`direnv allow`.
