@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import pypub
+import os, pypub
 
 epub = pypub.Epub('Site Reliability Engineering')
 
@@ -10,7 +10,7 @@ def setup_toc():
         print(link['href'])
         add_chapter_file(link['href'], link.get_text())
 
-    epub.create_epub('./build')
+    epub.create_epub(os.path.abspath('./build'))
 
 def add_chapter_file(href, title):
     file_path = href.replace('/sre/book/', 'html/')
