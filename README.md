@@ -19,3 +19,8 @@ Requirements:
 - Inline references are not handled in the best possible way
 - metadata.xml is not complete. There are just too many authors
 - Foreword/Preface is not part of the index
+
+
+# LICENSE
+
+This is licensed under WTFPL. See COPYING file for the full text.
