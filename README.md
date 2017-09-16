@@ -13,3 +13,9 @@ Requirements:
 - Ruby
 - bundler
 - Installs nokogiri
+
+# Known Issues
+
+- Inline references are not handled in the best possible way
+- metadata.xml is not complete. There are just too many authors
+- Foreword/Preface is not part of the index
