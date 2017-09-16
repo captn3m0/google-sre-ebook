@@ -1,2 +1,4 @@
 html/
 .direnv
+*.epub
+*.mobi
