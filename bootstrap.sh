@@ -14,5 +14,5 @@ ruby generate.rb
 
 cd html/chapters
 
-pandoc -S -o ../../google-sre.epub --epub-metadata=../../metadata.xml --epub-cover-image=../../cover.jpg sre.html
+pandoc -f html+smart -t epub+smart -o ../../google-sre.epub --epub-metadata=../../metadata.xml --epub-cover-image=../../cover.jpg sre.html
 ebook-convert google-sre.epub google-sre.mobi

@@ -2,3 +2,4 @@ html/
 .direnv
 *.epub
 *.mobi
+vendor/
