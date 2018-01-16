@@ -12,7 +12,7 @@ cd ..
 bundle install
 ruby generate.rb
 
-cd html/chapters
-
+pushd html/chapters
 pandoc -f html+smart -t epub+smart -o ../../google-sre.epub --epub-metadata=../../metadata.xml --epub-cover-image=../../cover.jpg sre.html
+popd
 ebook-convert google-sre.epub google-sre.mobi

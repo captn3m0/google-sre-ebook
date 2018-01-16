@@ -11,8 +11,9 @@ Review and run the `bootstrap.sh` script to generate the EPUB and MOBI files
 Requirements:
 
 - Ruby
-- bundler
-- Installs nokogiri
+- gem install bundler
+- gem install nokogiri
+- brew cask install calibre
 
 # Known Issues
 
