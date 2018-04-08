@@ -13,6 +13,7 @@ Requirements:
 - Ruby
 - gem install bundler
 - gem install nokogiri
+- brew install pandoc
 - brew cask install calibre
 
 # Known Issues
