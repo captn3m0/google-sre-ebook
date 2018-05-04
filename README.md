@@ -15,6 +15,7 @@ Requirements:
 - gem install nokogiri
 - brew install pandoc
 - brew cask install calibre
+- brew install wget
 
 # Known Issues
 
