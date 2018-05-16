@@ -1,18 +1,22 @@
 FROM ubuntu:latest
 
-ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND="noninteractive"
 
-RUN apt-get update && apt-get install -y \
+COPY . /src/
+
+WORKDIR /src
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     calibre \
     pandoc \
     ruby \
     ruby-dev \
     wget \
-    zlib1g-dev
+    zlib1g-dev \
+    && gem install bundler --no-ri --no-rdoc \
+    && bundle install
 
-RUN gem install bundler --no-ri --no-rdoc
+ENTRYPOINT ["/src/bootstrap.sh", "docker"]
 
-COPY . /
-
-RUN bundle install
+VOLUME ["/output"]

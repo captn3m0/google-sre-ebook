@@ -8,6 +8,19 @@ Original sources are downloaded from https://landing.google.com/sre/
 
 # Build
 
+## Docker (Preferred)
+
+Requirements:
+
+- Docker
+
+`docker run --rm --volume "$(pwd):/output" captn3m0/google-sre-ebook:latest`
+
+- You should see the final EPUB/MOBI files in the `output` directory after the above runs.
+- The file may be owned by the root user.
+
+The build for the above Docker image can be audited at <https://cloud.docker.com/swarm/captn3m0/repository/docker/captn3m0/google-sre-ebook/builds>.
+
 ## macOS
 
 Review and run the `bootstrap.sh` script to generate the EPUB and MOBI files
@@ -15,28 +28,17 @@ Review and run the `bootstrap.sh` script to generate the EPUB and MOBI files
 Requirements:
 
 - Ruby
-- gem install bundler
-- gem install nokogiri
-- brew install pandoc
-- brew cask install calibre
-- brew install wget
-
-## Docker
-
-Requirements:
-
-- Docker
-
-```
-$ ./build_docker.sh
-```
+- `gem install bundler`
+- `gem install nokogiri`
+- `brew install pandoc`
+- `brew cask install calibre`
+- `brew install wget`
 
 # Known Issues
 
 - Inline references are not handled in the best possible way
 - metadata.xml is not complete. There are just too many authors
 - Foreword/Preface is not part of the index
-
 
 # LICENSE
 
