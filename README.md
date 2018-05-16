@@ -6,6 +6,10 @@ Generates a EPUB/MOBI for the Google SRE Book.
 
 Original sources are downloaded from https://landing.google.com/sre/
 
+# Build
+
+## macOS
+
 Review and run the `bootstrap.sh` script to generate the EPUB and MOBI files
 
 Requirements:
@@ -16,6 +20,16 @@ Requirements:
 - brew install pandoc
 - brew cask install calibre
 - brew install wget
+
+## Docker
+
+Requirements:
+
+- Docker
+
+```
+$ ./build_docker.sh
+```
 
 # Known Issues
 
