@@ -1,4 +1,6 @@
-FROM ubuntu:17.10
+FROM ubuntu:latest
+
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
     build-essential \
