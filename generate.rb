@@ -67,8 +67,6 @@ chapter_links.each do |chapter_link|
   elsif content.children.css('div > h1').length > 0
     # remove additional parent div tag
     content = content.children.at_css('div')
-  else
-    content
   end
 
   # replace h1 title
