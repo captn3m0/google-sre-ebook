@@ -11,7 +11,11 @@ html = ''
 chapter_links.each do |chapter_link|
   chapter_file = File.basename chapter_link
   html += "<span class=\"hidden\" name=\"#{chapter_file}\"></span>"
-  content = Nokogiri::HTML(open("html/#{chapter_link}")).css('.content')
+  doc = Nokogiri::HTML(open("html/#{chapter_link}"))
+  content = doc.css('.content')
+
+  # this title is with additional 'chapter X' in front
+  title = doc.at_css('h2.chapter-title').content
 
   content.css('.cont').each do |e|
     e.remove
@@ -56,6 +60,17 @@ chapter_links.each do |chapter_link|
       end
     end
   end
+
+  if content.children.css('section > h1').length > 0
+    # remove additional parent section tag
+    content = content.children.at_css('section')
+  elsif content.children.css('div > h1').length > 0
+    # remove additional parent div tag
+    content = content.children.at_css('div')
+  end
+
+  # replace h1 title
+  content.at_css('h1').inner_html = title
 
   html += content.inner_html
 end
