@@ -21,6 +21,7 @@ pushd html/chapters
 pandoc -f html -t epub -o ../../google-sre.epub --epub-metadata=../../metadata.xml --epub-cover-image=../../cover.jpg sre.html
 popd
 ebook-convert google-sre.epub google-sre.mobi
+ebook-convert google-sre.epub google-sre.pdf
 
 if [ "$1"=="docker" ]; then
     chown -v $(id -u):$(id -g) google-sre.*

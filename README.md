@@ -2,7 +2,7 @@
 
 ![Cover](cover.jpg)
 
-Generates a EPUB/MOBI for the Google SRE Book.
+Generates a EPUB/MOBI/PDF for the Google SRE Book.
 
 Original sources are downloaded from https://landing.google.com/sre/
 
@@ -16,14 +16,14 @@ Requirements:
 
 `docker run --rm --volume "$(pwd):/output" captn3m0/google-sre-ebook:latest`
 
-- You should see the final EPUB/MOBI files in the `output` directory after the above runs.
+- You should see the final EPUB/MOBI/PDF files in the `output` directory after the above runs.
 - The file may be owned by the root user.
 
 The build for the above Docker image can be audited at <https://cloud.docker.com/swarm/captn3m0/repository/docker/captn3m0/google-sre-ebook/builds>.
 
 ## macOS
 
-Review and run the `bootstrap.sh` script to generate the EPUB and MOBI files
+Review and run the `bootstrap.sh` script to generate the EPUB, MOBI, and PDF files
 
 Requirements:
 
