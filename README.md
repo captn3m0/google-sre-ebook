@@ -14,7 +14,9 @@ Requirements:
 
 - Docker
 
-`docker run --rm --volume "$(pwd):/output" captn3m0/google-sre-ebook:latest`
+```
+$ docker run --rm --volume "$(pwd):/output" captn3m0/google-sre-ebook:latest
+```
 
 - You should see the final EPUB/MOBI/PDF files in the `output` directory after the above runs.
 - The file may be owned by the root user.
