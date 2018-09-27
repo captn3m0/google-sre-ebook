@@ -14,10 +14,20 @@ Requirements:
 
 - Docker
 
-`docker run --rm --volume "$(pwd):/output" captn3m0/google-sre-ebook:latest`
+```
+$ docker run --rm --volume "$(pwd):/output" captn3m0/google-sre-ebook:latest
+```
 
 - You should see the final EPUB/MOBI/PDF files in the `output` directory after the above runs.
 - The file may be owned by the root user.
+
+**NOTE:** You'll have to allow docker access to a directory that's local to your system. The safest way to do this is as follows:
+
+```
+$ mkdir /tmp/sreoutput
+$ chcon -Rt svirt_sandbox_file_t /tmp/sreoutput
+$ docker run --rm --volume "/tmp/sreoutput:/output" captn3m0/google-sre-ebook:latest
+```
 
 The build for the above Docker image can be audited at <https://cloud.docker.com/swarm/captn3m0/repository/docker/captn3m0/google-sre-ebook/builds>.
 
