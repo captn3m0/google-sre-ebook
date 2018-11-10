@@ -1,2 +1,6 @@
 html/
 .direnv
+*.epub
+*.mobi
+*.pdf
+vendor/
