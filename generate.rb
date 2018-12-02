@@ -3,7 +3,7 @@ require 'pp'
 require 'fileutils'
 # First we get the list of all the book sections:
 
-chapter_links = Nokogiri::HTML(open("html/index/index.html"))
+chapter_links = Nokogiri::HTML(open("html/toc/index.html"))
   .css('#drop-down a')
   .map {|l| l.attribute('href').value}
 
@@ -11,7 +11,7 @@ html = ''
 chapter_links.each do |chapter_link|
   chapter_file = File.basename chapter_link
   html += "<span class=\"hidden\" name=\"#{chapter_file}\"></span>"
-  doc = Nokogiri::HTML(open("html/index/#{chapter_link}"))
+  doc = Nokogiri::HTML(open("html/toc/#{chapter_link}"))
   content = doc.css('.content')
 
   # this title is with additional 'chapter X' in front
@@ -40,7 +40,6 @@ chapter_links.each do |chapter_link|
   content.css(headers.join(',')).each do |e|
     # If chapter heading
     if e == chapter_header
-      puts "Chapter Header"
       e.name = 'h1'
     else
       # Reduce everything by 1
@@ -75,5 +74,5 @@ chapter_links.each do |chapter_link|
   html += content.inner_html
 end
 
-File.open("html/sre-book/chapters/sre.html", 'w') { |file| file.write(html) }
+File.open("html/sre-book/toc/complete.html", 'w') { |file| file.write(html) }
 puts "[html] Generated HTML file"
