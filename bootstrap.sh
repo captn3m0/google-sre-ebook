@@ -1,4 +1,7 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
 TOC_URL="https://landing.google.com/sre/sre-book/toc/index.html"
 # Make sure that links are relative \
 # # Remove the /sre/ directories
@@ -18,19 +21,18 @@ wget \
     --mirror \
     --no-verbose \
     --recursive \
-    --domains=lh3.googleusercontent.com,landing.google.com \
-    "$TOC_URL"
+    --domains=lh3.googleusercontent.com,landing.google.com https://landing.google.com/sre/sre-book/toc/index.html
 
-exit
+MODE=${1:-}
 
-if [ $1 != "docker" ];then
+if [ "$MODE" != "docker" ];then
     bundle install
 fi
 
 ruby generate.rb
 
-pushd html/sre-book/chapters
-pandoc -f html -t epub -o ../../../google-sre.epub --epub-metadata=../../../metadata.xml --epub-cover-image=../../../cover.jpg sre.html
+pushd html/landing.google.com/sre/sre-book/toc
+pandoc -f html -t epub -o ../../../../../google-sre.epub --epub-metadata=../../../../../metadata.xml --epub-cover-image=../../../../../cover.jpg complete.html
 popd
 ebook-convert google-sre.epub google-sre.mobi
 ebook-convert google-sre.epub google-sre.pdf
