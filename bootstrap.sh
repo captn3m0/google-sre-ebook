@@ -1,26 +1,38 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
-# Cleanup
-rm -rf html
-mkdir -p html/index
-mkdir -p html/sre-book
-cd html
+TOC_URL="https://landing.google.com/sre/sre-book/toc/index.html"
+# Make sure that links are relative \
+# # Remove the /sre/ directories
+# Save stuff in html/ directory
+# Do not create a landing.google.com directory
+# Enable recursion, timestamping (--mirror)
+# Images are hosted elsewhere, download them as well.
+# We need to go up a level from /toc/ where we start
+wget \
+    --convert-links \
+    --directory-prefix=html \
+    --page-requisites \
+    --adjust-extension \
+    --span-hosts \
+    --trust-server-names \
+    --backup-converted \
+    --mirror \
+    --no-verbose \
+    --recursive \
+    --domains=lh3.googleusercontent.com,landing.google.com https://landing.google.com/sre/sre-book/toc/index.html
 
-# Download
-wget --convert-links --mirror https://landing.google.com/sre/book/
-mv landing.google.com/sre/sre-book/* ./sre-book
-mv landing.google.com/sre/book/index.html ./index
-rm -rf landing.google.com
-cd ..
+MODE=${1:-}
 
-if [ $1 != "docker" ];then
+if [ "$MODE" != "docker" ];then
     bundle install
 fi
 
 ruby generate.rb
 
-pushd html/sre-book/chapters
-pandoc -f html -t epub -o ../../../google-sre.epub --epub-metadata=../../../metadata.xml --epub-cover-image=../../../cover.jpg sre.html
+pushd html/landing.google.com/sre/sre-book/toc
+pandoc -f html -t epub -o ../../../../../google-sre.epub --epub-metadata=../../../../../metadata.xml --epub-cover-image=../../../../../cover.jpg complete.html
 popd
 ebook-convert google-sre.epub google-sre.mobi
 ebook-convert google-sre.epub google-sre.pdf
