@@ -12,14 +12,14 @@ Original sources are downloaded from https://landing.google.com/sre/
 
 Requirements:
 
-- Docker
+-   Docker
 
 ```
 $ docker run --rm --volume "$(pwd):/output" captn3m0/google-sre-ebook:latest
 ```
 
-- You should see the final EPUB/MOBI/PDF files in the `output` directory after the above runs.
-- The file may be owned by the root user.
+-   You should see the final EPUB/MOBI/PDF files in the `output` directory after the above runs.
+-   The file may be owned by the root user.
 
 **NOTE:** You'll have to allow docker access to a directory that's local to your system. The safest way to do this is as follows:
 
@@ -37,18 +37,17 @@ Review and run the `bootstrap.sh` script to generate the EPUB, MOBI, and PDF fil
 
 Requirements:
 
-- Ruby
-- `gem install bundler`
-- `gem install nokogiri`
-- `brew install pandoc`
-- `brew cask install calibre`
-- `brew install wget`
+-   Ruby
+-   `gem install bundler`
+-   `gem install nokogiri`
+-   `brew install pandoc`
+-   `brew cask install calibre`
+-   `brew install wget`
 
 # Known Issues
 
-- Inline references are not handled in the best possible way
-- metadata.xml is not complete. There are just too many authors
-- Foreword/Preface is not part of the index
+-   metadata.xml is not complete. There are just too many authors
+-   Foreword/Preface is not part of the index
 
 # LICENSE
 

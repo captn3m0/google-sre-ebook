@@ -32,7 +32,10 @@ fi
 ruby generate.rb
 
 pushd html/landing.google.com/sre/sre-book/toc
-pandoc -f html -t epub -o ../../../../../google-sre.epub --epub-metadata=../../../../../metadata.xml --epub-cover-image=../../../../../cover.jpg complete.html
+pandoc --from=html --to=epub --output=../../../../../google-sre.epub \
+    --epub-metadata=../../../../../metadata.xml \
+    --epub-cover-image=../../../../../cover.jpg \
+    complete.html
 popd
 ebook-convert google-sre.epub google-sre.mobi
 ebook-convert google-sre.epub google-sre.pdf
