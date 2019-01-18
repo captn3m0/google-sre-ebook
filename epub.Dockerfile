@@ -1,6 +1,6 @@
 FROM ruby:alpine
 
-LABEL maintainer="github.google-sre-ebook@captnemo.in"
+LABEL maintainer="docker@captnemo.in"
 
 RUN apk add \
     build-base \
@@ -17,11 +17,11 @@ COPY Gemfile* /tmp/
 
 WORKDIR /tmp
 
-RUN gem install bundler --no-document \
+RUN gem install bundler --no-ri --no-document \
     && bundle install
 
 WORKDIR /src
 
-ENTRYPOINT ["/src/bootstrap.sh", "docker"]
+ENTRYPOINT ["/src/bootstrap.sh", "docker", "epub"]
 
 VOLUME ["/output"]
