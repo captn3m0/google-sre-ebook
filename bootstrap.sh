@@ -39,7 +39,7 @@ fi
 # Add extension to files.
 # That because `pandoc` cannot generate the right `mime type` without the extension.
 # https://github.com/captn3m0/google-sre-ebook/issues/19
-IMGS_FILES="$(ls /src/html/${IMGS_DOMAIN}/*)"
+IMGS_FILES="$(ls html/${IMGS_DOMAIN}/*)"
 for FILE_NAME_FULL in ${IMGS_FILES}; do
 
     # Get file vars.
@@ -52,8 +52,8 @@ for FILE_NAME_FULL in ${IMGS_FILES}; do
 
 done
 
-ruby generate.rb
-pushd html/landing.google.com/sre/${BOOK_FILE}/toc
+bundle exec ruby generate.rb
+pushd html/landing.google.com/sre/${BOOK_NAME}/toc
 pandoc --from=html --to=epub \
     --output=../../../../../${BOOK_FILE}.epub \
     --epub-metadata=../../../../../${BOOK_NAME}.xml \

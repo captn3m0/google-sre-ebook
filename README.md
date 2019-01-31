@@ -39,7 +39,7 @@ Requirements:
 
 -   Ruby
 -   `gem install bundler`
--   `gem install nokogiri`
+-   `bundle install`
 -   `brew install pandoc`
 -   `brew cask install calibre`
 -   `brew install wget`
