@@ -2,7 +2,13 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-TOC_URL="https://landing.google.com/sre/sre-book/toc/index.html"
+# Vars.
+export BOOK_NAME="sre-book"
+export BOOK_NAME_FULL="Site Reliability Engineering"
+BOOK_FILE="google-${BOOK_NAME}"
+TOC_URL="https://landing.google.com/sre/${BOOK_NAME}/toc/index.html"
+IMGS_DOMAIN="lh3.googleusercontent.com"
+
 # Make sure that links are relative \
 # # Remove the /sre/ directories
 # Save stuff in html/ directory
@@ -11,33 +17,40 @@ TOC_URL="https://landing.google.com/sre/sre-book/toc/index.html"
 # Images are hosted elsewhere, download them as well.
 # We need to go up a level from /toc/ where we start
 wget \
-    --convert-links \
+    --convert-links         \
     --directory-prefix=html \
-    --page-requisites \
-    --adjust-extension \
-    --span-hosts \
-    --trust-server-names \
-    --backup-converted \
-    --mirror \
-    --no-verbose \
-    --recursive \
-    --domains=lh3.googleusercontent.com,landing.google.com https://landing.google.com/sre/sre-book/toc/index.html
+    --page-requisites       \
+    --adjust-extension      \
+    --span-hosts            \
+    --trust-server-names    \
+    --backup-converted      \
+    --mirror                \
+    --no-verbose            \
+    --recursive             \
+    --domains=${IMGS_DOMAIN},landing.google.com ${TOC_URL}
 
+#
 MODE=${1:-}
 
 if [ "$MODE" != "docker" ];then
     bundle install
 fi
 
+#
 ruby generate.rb
 
-pushd html/landing.google.com/sre/sre-book/toc
-pandoc -f html -t epub -o ../../../../../google-sre.epub --epub-metadata=../../../../../metadata.xml --epub-cover-image=../../../../../cover.jpg complete.html
+#
+pushd html/landing.google.com/sre/${BOOK_NAME}/toc
+pandoc -f html -t epub -o ../../../../../${BOOK_FILE}.epub --epub-metadata=../../../../../metadata.xml --epub-cover-image=../../../../../cover.jpg complete.html
 popd
-ebook-convert google-sre.epub google-sre.mobi
-ebook-convert google-sre.epub google-sre.pdf
 
+#
+for EXTENSION in mobi pdf; do
+    ebook-convert ${BOOK_FILE}.epub ${BOOK_FILE}.${EXTENSION}
+done
+
+#
 if [ "$1"=="docker" ]; then
-    chown -v $(id -u):$(id -g) google-sre.*
-    mv -f google-sre.* /output
+    chown -v $(id -u):$(id -g) ${BOOK_FILE}.*
+    mv -f ${BOOK_FILE}.* /output
 fi
