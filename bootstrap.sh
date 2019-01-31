@@ -36,6 +36,22 @@ if [ "$MODE" != "docker" ];then
     bundle install
 fi
 
+# Add extension to files.
+# That because `pandoc` cannot generate the right `mime type` without the extension.
+# https://github.com/captn3m0/google-sre-ebook/issues/19
+IMGS_FILES="$(ls /src/html/${IMGS_DOMAIN}/*)"
+for FILE_NAME_FULL in ${IMGS_FILES}; do
+
+    # Get file vars.
+    FILE_NAME_BASE="$(basename ${FILE_NAME_FULL})"
+    FILE_TYPE=$(file -b -- "${FILE_NAME_FULL}" | cut -f1 -d " ")
+
+    # Rename and replace file.
+    mv "${FILE_NAME_FULL}" "${FILE_NAME_FULL}.${FILE_TYPE,,}" &&
+    grep -rl "${FILE_NAME_BASE}" ./html | xargs sed -i "s/${FILE_NAME_BASE}/${FILE_NAME_BASE}.${FILE_TYPE,,}/g"
+
+done
+
 #
 ruby generate.rb
 

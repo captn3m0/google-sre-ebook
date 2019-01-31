@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ruby-dev \
     wget \
     zlib1g-dev \
+    file \
     && gem install bundler --no-ri --no-rdoc \
     && bundle install \
     && apt-get clean \
