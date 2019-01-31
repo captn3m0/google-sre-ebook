@@ -52,20 +52,19 @@ for FILE_NAME_FULL in ${IMGS_FILES}; do
 
 done
 
-#
 ruby generate.rb
-
-#
-pushd html/landing.google.com/sre/${BOOK_NAME}/toc
-pandoc -f html -t epub -o ../../../../../${BOOK_FILE}.epub --epub-metadata=../../../../../metadata.xml --epub-cover-image=../../../../../cover.jpg complete.html
+pushd html/landing.google.com/sre/${BOOK_FILE}/toc
+pandoc --from=html --to=epub \
+    --output=../../../../../${BOOK_FILE}.epub \
+    --epub-metadata=../../../../../metadata.xml \
+    --epub-cover-image=../../../../../cover.jpg \
+    complete.html
 popd
 
-#
 for EXTENSION in mobi pdf; do
     ebook-convert ${BOOK_FILE}.epub ${BOOK_FILE}.${EXTENSION}
 done
 
-#
 if [ "$1"=="docker" ]; then
     chown -v $(id -u):$(id -g) ${BOOK_FILE}.*
     mv -f ${BOOK_FILE}.* /output
