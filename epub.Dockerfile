@@ -2,7 +2,7 @@ FROM ruby:alpine
 
 LABEL maintainer="docker@captnemo.in"
 
-RUN apk add \
+RUN apk add --no-cache \
     build-base \
     linux-headers \
     wget \
@@ -22,6 +22,8 @@ RUN gem install bundler --no-ri --no-document \
 
 WORKDIR /src
 
-ENTRYPOINT ["/src/bootstrap.sh", "docker", "epub"]
+ENV NO_BUNDLE_INSTALL=true
+
+ENTRYPOINT ["/src/bootstrap.sh", "docker"]
 
 VOLUME ["/output"]

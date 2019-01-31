@@ -29,10 +29,9 @@ wget \
     --recursive             \
     --domains=${IMGS_DOMAIN},landing.google.com ${TOC_URL}
 
-#
-MODE=${1:-}
+: "${NO_BUNDLE_INSTALL:=false}"
 
-if [ "$MODE" != "docker" ];then
+if [ "$NO_BUNDLE_INSTALL" != "true" ];then
     bundle install
 fi
 
@@ -61,10 +60,13 @@ pandoc --from=html --to=epub \
     complete.html
 popd
 
-for EXTENSION in mobi pdf; do
-    ebook-convert ${BOOK_FILE}.epub ${BOOK_FILE}.${EXTENSION}
-done
+if [[ command -v ebook-convert ]]; then
+    for EXTENSION in mobi pdf; do
+        ebook-convert ${BOOK_FILE}.epub ${BOOK_FILE}.${EXTENSION}
+    done
+fi
 
+# TODO: Replace this with a better check
 if [ "$1"=="docker" ]; then
     chown -v $(id -u):$(id -g) ${BOOK_FILE}.*
     mv -f ${BOOK_FILE}.* /output
