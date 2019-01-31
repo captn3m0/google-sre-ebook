@@ -2,7 +2,13 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-TOC_URL="https://landing.google.com/sre/sre-book/toc/index.html"
+# Vars.
+export BOOK_NAME="sre-book"
+export BOOK_NAME_FULL="Site Reliability Engineering"
+BOOK_FILE="google-${BOOK_NAME}"
+TOC_URL="https://landing.google.com/sre/${BOOK_NAME}/toc/index.html"
+IMGS_DOMAIN="lh3.googleusercontent.com"
+
 # Make sure that links are relative \
 # # Remove the /sre/ directories
 # Save stuff in html/ directory
@@ -11,36 +17,55 @@ TOC_URL="https://landing.google.com/sre/sre-book/toc/index.html"
 # Images are hosted elsewhere, download them as well.
 # We need to go up a level from /toc/ where we start
 wget \
-    --convert-links \
+    --convert-links         \
     --directory-prefix=html \
-    --page-requisites \
-    --adjust-extension \
-    --span-hosts \
-    --trust-server-names \
-    --backup-converted \
-    --mirror \
-    --no-verbose \
-    --recursive \
-    --domains=lh3.googleusercontent.com,landing.google.com https://landing.google.com/sre/sre-book/toc/index.html
+    --page-requisites       \
+    --adjust-extension      \
+    --span-hosts            \
+    --trust-server-names    \
+    --backup-converted      \
+    --mirror                \
+    --no-verbose            \
+    --recursive             \
+    --domains=${IMGS_DOMAIN},landing.google.com ${TOC_URL}
 
+#
 MODE=${1:-}
 
 if [ "$MODE" != "docker" ];then
     bundle install
 fi
 
-ruby generate.rb
+# Add extension to files.
+# That because `pandoc` cannot generate the right `mime type` without the extension.
+# https://github.com/captn3m0/google-sre-ebook/issues/19
+IMGS_FILES="$(ls html/${IMGS_DOMAIN}/*)"
+for FILE_NAME_FULL in ${IMGS_FILES}; do
 
-pushd html/landing.google.com/sre/sre-book/toc
-pandoc --from=html --to=epub --output=../../../../../google-sre.epub \
-    --epub-metadata=../../../../../metadata.xml \
-    --epub-cover-image=../../../../../cover.jpg \
+    # Get file vars.
+    FILE_NAME_BASE="$(basename ${FILE_NAME_FULL})"
+    FILE_TYPE=$(file -b -- "${FILE_NAME_FULL}" | cut -f1 -d " ")
+
+    # Rename and replace file.
+    mv "${FILE_NAME_FULL}" "${FILE_NAME_FULL}.${FILE_TYPE,,}" &&
+    grep -rl "${FILE_NAME_BASE}" ./html | xargs sed -i "s/${FILE_NAME_BASE}/${FILE_NAME_BASE}.${FILE_TYPE,,}/g"
+
+done
+
+bundle exec ruby generate.rb
+pushd html/landing.google.com/sre/${BOOK_NAME}/toc
+pandoc --from=html --to=epub \
+    --output=../../../../../${BOOK_FILE}.epub \
+    --epub-metadata=../../../../../${BOOK_NAME}.xml \
+    --epub-cover-image=../../../../../${BOOK_NAME}.jpg \
     complete.html
 popd
-ebook-convert google-sre.epub google-sre.mobi
-ebook-convert google-sre.epub google-sre.pdf
+
+for EXTENSION in mobi pdf; do
+    ebook-convert ${BOOK_FILE}.epub ${BOOK_FILE}.${EXTENSION}
+done
 
 if [ "$1"=="docker" ]; then
-    chown -v $(id -u):$(id -g) google-sre.*
-    mv -f google-sre.* /output
+    chown -v $(id -u):$(id -g) ${BOOK_FILE}.*
+    mv -f ${BOOK_FILE}.* /output
 fi

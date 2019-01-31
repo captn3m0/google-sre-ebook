@@ -4,7 +4,7 @@ require 'fileutils'
 
 # First we get the list of all the book sections:
 
-Dir.chdir("html/landing.google.com/sre/sre-book/toc")
+Dir.chdir("html/landing.google.com/sre/%s/toc" % ENV['BOOK_NAME'])
 chapter_links = Nokogiri::HTML(open("index.html"))
   .css('#drop-down a')
   .map {|l| l.attribute('href').value}
@@ -13,7 +13,7 @@ html = <<EOT
 <!DOCTYPE html>
 <html>
   <head>
-  <title>Site Reliability Engineering</title>
+  <title>#{ENV['BOOK_NAME_FULL']}</title>
   <meta charset="utf-8">
   </head>
   <body>
