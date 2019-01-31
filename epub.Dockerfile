@@ -17,7 +17,7 @@ COPY Gemfile* /tmp/
 
 WORKDIR /tmp
 
-RUN gem install bundler --no-ri --no-document \
+RUN gem install bundler --no-document \
     && bundle install
 
 WORKDIR /src

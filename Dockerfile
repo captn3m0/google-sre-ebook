@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     zlib1g-dev \
     file \
-    && gem install bundler --no-ri --no-rdoc \
+    && gem install bundler --no-rdoc \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
