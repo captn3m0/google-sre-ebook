@@ -56,8 +56,8 @@ ruby generate.rb
 pushd html/landing.google.com/sre/${BOOK_FILE}/toc
 pandoc --from=html --to=epub \
     --output=../../../../../${BOOK_FILE}.epub \
-    --epub-metadata=../../../../../metadata.xml \
-    --epub-cover-image=../../../../../cover.jpg \
+    --epub-metadata=../../../../../${BOOK_NAME}.xml \
+    --epub-cover-image=../../../../../${BOOK_NAME}.jpg \
     complete.html
 popd
 
