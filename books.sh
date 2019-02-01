@@ -12,4 +12,14 @@ BOOKS=(
         '
     )
 
+    # Site Reliability Workbook
+    ["SRW_BOOK"]=$(
+        echo '
+            BOOK_NAME=workbook
+            BOOK_NAME_FULL=The Site Reliability Workbook
+            BOOK_FILE=google-sre-workbook
+            BOOK_TOC_URL=https://landing.google.com/sre/workbook/toc/index.html
+        '
+    )
+
 )
