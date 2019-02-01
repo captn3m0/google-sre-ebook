@@ -7,12 +7,10 @@ Original sources are downloaded from https://landing.google.com/sre/books
 # Books
 
 ## Site Reliability Engineering
-
-![Cover](sre-book.jpg)
+<img src="sre-book.jpg" width="320" alt="sre-book" >
 
 ## The Site Reliability Workbook
-
-![Cover](workbook.jpg)
+<img src="workbook.jpg" width="320" alt="srw-book" >
 
 # Build
 
