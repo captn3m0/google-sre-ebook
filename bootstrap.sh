@@ -1,14 +1,15 @@
 #!/bin/bash
 set -euo pipefail
+
+# Get book details.
+source books.sh
+export ${BOOKS[${BOOK_SLUG^^}]}
+
+# Common vars.
+IMGS_DOMAIN="lh3.googleusercontent.com"
 IFS=$'\n\t'
 
-# Vars.
-export BOOK_NAME="sre-book"
-export BOOK_NAME_FULL="Site Reliability Engineering"
-BOOK_FILE="google-${BOOK_NAME}"
-TOC_URL="https://landing.google.com/sre/${BOOK_NAME}/toc/index.html"
-IMGS_DOMAIN="lh3.googleusercontent.com"
-
+#
 # Make sure that links are relative \
 # # Remove the /sre/ directories
 # Save stuff in html/ directory
@@ -27,7 +28,7 @@ wget \
     --mirror                \
     --no-verbose            \
     --recursive             \
-    --domains=${IMGS_DOMAIN},landing.google.com ${TOC_URL}
+    --domains=${IMGS_DOMAIN},landing.google.com ${BOOK_TOC_URL}
 
 #
 MODE=${1:-}
@@ -36,6 +37,7 @@ if [ "$MODE" != "docker" ];then
     bundle install
 fi
 
+#
 # Add extension to files.
 # That because `pandoc` cannot generate the right `mime type` without the extension.
 # https://github.com/captn3m0/google-sre-ebook/issues/19
@@ -52,19 +54,25 @@ for FILE_NAME_FULL in ${IMGS_FILES}; do
 
 done
 
+#
+# Generate epub from html.
 bundle exec ruby generate.rb
 pushd html/landing.google.com/sre/${BOOK_NAME}/toc
-pandoc --from=html --to=epub \
-    --output=../../../../../${BOOK_FILE}.epub \
-    --epub-metadata=../../../../../${BOOK_NAME}.xml \
-    --epub-cover-image=../../../../../${BOOK_NAME}.jpg \
+pandoc --from=html --to=epub                           \
+    --output=../../../../../${BOOK_FILE}.epub          \
+    --epub-metadata=../../../../../metadata/${BOOK_NAME}.xml    \
+    --epub-cover-image=../../../../../cover/${BOOK_NAME}.jpg \
     complete.html
 popd
 
+#
+# Generate other format from epub.
 for EXTENSION in mobi pdf; do
     ebook-convert ${BOOK_FILE}.epub ${BOOK_FILE}.${EXTENSION}
 done
 
+#
+# If it works inside docker.
 if [ "$1"=="docker" ]; then
     chown -v $(id -u):$(id -g) ${BOOK_FILE}.*
     mv -f ${BOOK_FILE}.* /output
