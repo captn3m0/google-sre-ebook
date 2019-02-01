@@ -1,10 +1,18 @@
-# google-sre-ebook
+# Google SRE Book/s
 
-![Cover](cover.jpg)
+Generates a EPUB/MOBI/PDF for the Google SRE Book/s.
 
-Generates a EPUB/MOBI/PDF for the Google SRE Book.
+Original sources are downloaded from https://landing.google.com/sre/books
 
-Original sources are downloaded from https://landing.google.com/sre/
+# Books
+
+## Site Reliability Engineering
+
+![Cover](sre-book.jpg)
+
+## The Site Reliability Workbook
+
+![Cover](workbook.jpg)
 
 # Build
 
