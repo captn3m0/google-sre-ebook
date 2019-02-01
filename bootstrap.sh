@@ -3,13 +3,13 @@ if [[ "${DEBUG}" == 1 ]]; then
     set -x
 fi
 set -euo pipefail
+IFS=$'\n\t'
 
 # Get book details.
 source books.sh
 export ${BOOKS[${BOOK_SLUG^^}]}
 
 # Common vars.
-IFS=$'\n\t'
 IMGS_DOMAIN="lh3.googleusercontent.com"
 
 #
@@ -20,6 +20,7 @@ IMGS_DOMAIN="lh3.googleusercontent.com"
 # Enable recursion, timestamping (--mirror)
 # Images are hosted elsewhere, download them as well.
 # We need to go up a level from /toc/ where we start
+# The "ture" at the end to ignore non-200 URLs like 404.
 wget \
     --convert-links         \
     --directory-prefix=html \
@@ -31,7 +32,7 @@ wget \
     --mirror                \
     --no-verbose            \
     --recursive             \
-    --domains=${IMGS_DOMAIN},landing.google.com ${BOOK_TOC_URL}
+    --domains=${IMGS_DOMAIN},landing.google.com ${BOOK_TOC_URL} || true
 
 #
 echo "Get working mode..."
