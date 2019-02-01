@@ -1,4 +1,7 @@
 #!/bin/bash
+if [[ "${DEBUG}" == 1 ]]; then
+    set -x
+fi
 set -euo pipefail
 
 # Get book details.
@@ -6,8 +9,8 @@ source books.sh
 export ${BOOKS[${BOOK_SLUG^^}]}
 
 # Common vars.
-IMGS_DOMAIN="lh3.googleusercontent.com"
 IFS=$'\n\t'
+IMGS_DOMAIN="lh3.googleusercontent.com"
 
 #
 # Make sure that links are relative \
@@ -31,6 +34,7 @@ wget \
     --domains=${IMGS_DOMAIN},landing.google.com ${BOOK_TOC_URL}
 
 #
+echo "Get working mode..."
 MODE=${1:-}
 
 if [ "$MODE" != "docker" ];then
@@ -41,6 +45,7 @@ fi
 # Add extension to files.
 # That because `pandoc` cannot generate the right `mime type` without the extension.
 # https://github.com/captn3m0/google-sre-ebook/issues/19
+echo "Fix images extension issue ..."
 IMGS_FILES="$(ls html/${IMGS_DOMAIN}/*)"
 for FILE_NAME_FULL in ${IMGS_FILES}; do
 
@@ -50,17 +55,18 @@ for FILE_NAME_FULL in ${IMGS_FILES}; do
 
     # Rename and replace file.
     mv "${FILE_NAME_FULL}" "${FILE_NAME_FULL}.${FILE_TYPE,,}" &&
-    grep -rl "${FILE_NAME_BASE}" ./html | xargs sed -i "s/${FILE_NAME_BASE}/${FILE_NAME_BASE}.${FILE_TYPE,,}/g"
+    grep -rl -- "${FILE_NAME_BASE}" ./html | xargs sed -i -- "s/${FILE_NAME_BASE}/${FILE_NAME_BASE}.${FILE_TYPE,,}/g"
 
 done
 
 #
 # Generate epub from html.
+echo "Generate book ..."
 bundle exec ruby generate.rb
 pushd html/landing.google.com/sre/${BOOK_NAME}/toc
-pandoc --from=html --to=epub                           \
-    --output=../../../../../${BOOK_FILE}.epub          \
-    --epub-metadata=../../../../../metadata/${BOOK_NAME}.xml    \
+pandoc --from=html --to=epub                                 \
+    --output=../../../../../${BOOK_FILE}.epub                \
+    --epub-metadata=../../../../../metadata/${BOOK_NAME}.xml \
     --epub-cover-image=../../../../../cover/${BOOK_NAME}.jpg \
     complete.html
 popd
@@ -73,7 +79,7 @@ done
 
 #
 # If it works inside docker.
-if [ "$1"=="docker" ]; then
+if [ "$MODE" == "docker" ]; then
     chown -v $(id -u):$(id -g) ${BOOK_FILE}.*
     mv -f ${BOOK_FILE}.* /output
 fi
