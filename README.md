@@ -1,10 +1,16 @@
-# google-sre-ebook
+# Google SRE Book/s
 
-![Cover](cover.jpg)
+Generates a EPUB/MOBI/PDF for the Google SRE Book/s.
 
-Generates a EPUB/MOBI/PDF for the Google SRE Book.
+Original sources are downloaded from https://landing.google.com/sre/books
 
-Original sources are downloaded from https://landing.google.com/sre/
+# Books
+
+## Site Reliability Engineering (2016)
+<img src="cover/sre-book.jpg" width="320" alt="site reliability engineering cover" >
+
+## The Site Reliability Workbook (2018)
+<img src="cover/workbook.jpg" width="320" alt="the site reliability workbook cover" >
 
 # Build
 
@@ -14,8 +20,14 @@ Requirements:
 
 -   Docker
 
+You can generate either of books using `BOOK_SLUG` variable.
+
+Available values for `BOOK_SLUG`:
+  - `sre_book` Site Reliability Engineering.
+  - `srw_book` The Site Reliability Workbook.
+
 ```
-$ docker run --rm --volume "$(pwd):/output" captn3m0/google-sre-ebook:latest
+$ docker run --rm --volume "$(pwd):/output" -e BOOK_SLUG='sre_book' captn3m0/google-sre-ebook:latest
 ```
 
 -   You should see the final EPUB/MOBI/PDF files in the `output` directory after the above runs.
@@ -26,7 +38,7 @@ $ docker run --rm --volume "$(pwd):/output" captn3m0/google-sre-ebook:latest
 ```
 $ mkdir /tmp/sreoutput
 $ chcon -Rt svirt_sandbox_file_t /tmp/sreoutput
-$ docker run --rm --volume "/tmp/sreoutput:/output" captn3m0/google-sre-ebook:latest
+$ docker run --rm --volume "/tmp/sreoutput:/output" -e BOOK_SLUG='sre_book' captn3m0/google-sre-ebook:latest
 ```
 
 The build for the above Docker image can be audited at <https://cloud.docker.com/swarm/captn3m0/repository/docker/captn3m0/google-sre-ebook/builds>.
@@ -46,7 +58,7 @@ Requirements:
 
 # Known Issues
 
--   metadata.xml is not complete. There are just too many authors
+-   metadata is not complete. There are just too many authors
 -   Foreword/Preface is not part of the index
 
 # LICENSE
