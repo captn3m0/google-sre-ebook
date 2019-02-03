@@ -6,11 +6,9 @@ Original sources are downloaded from https://landing.google.com/sre/books
 
 # Books
 
-## Site Reliability Engineering (2016)
-<img src="cover/sre-book.jpg" width="320" alt="site reliability engineering cover" >
-
-## The Site Reliability Workbook (2018)
-<img src="cover/workbook.jpg" width="320" alt="the site reliability workbook cover" >
+|Site Reliability Engineering (2016)|The Site Reliability Workbook (2018)|
+|-----------------------------------|------------------------------------|
+|<img src="cover/sre-book.jpg" width="320" alt="site reliability engineering cover" />|<img src="cover/workbook.jpg" width="320" alt="the site reliability workbook cover" />|
 
 # Build
 
@@ -22,7 +20,7 @@ Requirements:
 
 You can generate either of books using `BOOK_SLUG` variable.
 
-Available values for `BOOK_SLUG`:
+Available values for *`BOOK_SLUG`*:
   - `sre_book` Site Reliability Engineering.
   - `srw_book` The Site Reliability Workbook.
 
