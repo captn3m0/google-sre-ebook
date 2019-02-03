@@ -8,7 +8,7 @@ BOOKS=(
     ["SRE_BOOK"]='
 	BOOK_NAME=sre-book
 	BOOK_NAME_FULL=Site Reliability Engineering
-	BOOK_FILE=google-sre-book
+	BOOK_FILE=google-site-reliability-engineering
 	BOOK_TOC_URL=https://landing.google.com/sre/sre-book/toc/index.html
 	'
 
@@ -16,7 +16,7 @@ BOOKS=(
     ["SRW_BOOK"]='
 	BOOK_NAME=workbook
 	BOOK_NAME_FULL=The Site Reliability Workbook
-	BOOK_FILE=google-sre-workbook
+	BOOK_FILE=google-the-site-reliability-workbook
 	BOOK_TOC_URL=https://landing.google.com/sre/workbook/toc/index.html
 	'
 
