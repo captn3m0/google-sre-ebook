@@ -4,11 +4,13 @@ Generates a EPUB/MOBI/PDF for the Google SRE Book/s.
 
 Original sources are downloaded from https://landing.google.com/sre/books
 
+Visit the [Releases](https://github.com/captn3m0/google-sre-ebook/releases) page to download the latest release.
+
 # Books
 
-|Site Reliability Engineering (2016)|The Site Reliability Workbook (2018)|
-|-----------------------------------|------------------------------------|
-|<img src="cover/sre-book.jpg" width="320" alt="site reliability engineering cover" />|<img src="cover/workbook.jpg" width="320" alt="the site reliability workbook cover" />|
+| Site Reliability Engineering (2016)                                                   | The Site Reliability Workbook (2018)                                                   |
+|:--------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| <img src="cover/sre-book.jpg" width="320" alt="site reliability engineering cover" /> | <img src="cover/workbook.jpg" width="320" alt="the site reliability workbook cover" /> |
 
 # Build
 
