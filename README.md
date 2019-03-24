@@ -30,7 +30,7 @@ Available values for *`BOOK_SLUG`*:
 $ docker run --rm --volume "$(pwd):/output" -e BOOK_SLUG='srw_book' captn3m0/google-sre-ebook:latest
 ```
 
--   You should see the final EPUB/MOBI/PDF files in the `output` directory after the above runs.
+-   You should see the final EPUB/MOBI/PDF files in the current directory after the above runs.
 -   The file may be owned by the root user.
 
 **NOTE:** You'll have to allow docker access to a directory that's local to your system. The safest way to do this is as follows:
