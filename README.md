@@ -8,9 +8,9 @@ Visit the [Releases](https://github.com/captn3m0/google-sre-ebook/releases) page
 
 # Books
 
-| Site Reliability Engineering (2016)                                                   | The Site Reliability Workbook (2018)                                                   |
-|:--------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| <img src="cover/sre-book.jpg" width="320" alt="site reliability engineering cover" /> | <img src="cover/workbook.jpg" width="320" alt="the site reliability workbook cover" /> |
+| Site Reliability Engineering (2016)                                                                                                                       | The Site Reliability Workbook (2018)                                                                                                                       |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <a href="https://github.com/captn3m0/google-sre-ebook/releases"><img src="cover/sre-book.jpg" width="320" alt="site reliability engineering cover" /></a> | <a href="https://github.com/captn3m0/google-sre-ebook/releases"><img src="cover/workbook.jpg" width="320" alt="the site reliability workbook cover" /></a> |
 
 # Build
 
@@ -22,9 +22,10 @@ Requirements:
 
 You can generate either of books using `BOOK_SLUG` variable.
 
-Available values for *`BOOK_SLUG`*:
-  - `sre_book` Site Reliability Engineering.
-  - `srw_book` The Site Reliability Workbook.
+Available values for _`BOOK_SLUG`_:
+
+-   `sre_book` Site Reliability Engineering.
+-   `srw_book` The Site Reliability Workbook.
 
 ```
 $ docker run --rm --volume "$(pwd):/output" -e BOOK_SLUG='srw_book' captn3m0/google-sre-ebook:latest
