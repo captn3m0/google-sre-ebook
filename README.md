@@ -18,21 +18,21 @@ Visit the [Releases](https://github.com/captn3m0/google-sre-ebook/releases) page
 
 Requirements:
 
--   Docker
+- Docker
 
 You can generate either of books using `BOOK_SLUG` variable.
 
 Available values for _`BOOK_SLUG`_:
 
--   `sre_book` Site Reliability Engineering.
--   `srw_book` The Site Reliability Workbook.
+- `sre_book` Site Reliability Engineering.
+- `srw_book` The Site Reliability Workbook.
 
 ```
 $ docker run --rm --volume "$(pwd):/output" -e BOOK_SLUG='srw_book' captn3m0/google-sre-ebook:latest
 ```
 
--   You should see the final EPUB/MOBI/PDF files in the current directory after the above runs.
--   The file may be owned by the root user.
+- You should see the final EPUB/MOBI/PDF files in the current directory after the above runs.
+- The file may be owned by the root user.
 
 **NOTE:** You'll have to allow docker access to a directory that's local to your system. The safest way to do this is as follows:
 
@@ -50,17 +50,18 @@ Review and run the `bootstrap.sh` script to generate the EPUB, MOBI, and PDF fil
 
 Requirements:
 
--   Ruby
--   `gem install bundler`
--   `bundle install`
--   `brew install pandoc`
--   `brew cask install calibre`
--   `brew install wget`
+- Ruby
+- `gem install bundler`
+- `bundle install`
+- `brew install pandoc`
+- `brew cask install calibre`
+- `brew install wget`
 
 # Known Issues
 
--   metadata is not complete. There are just too many authors
--   Foreword/Preface is not part of the index
+- metadata is not complete. There are just too many authors
+- Foreword/Preface is not part of the index
+- The typesetting is not great and does not match the original. See #22 for a list
 
 # LICENSE
 
