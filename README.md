@@ -42,7 +42,7 @@ $ chcon -Rt svirt_sandbox_file_t /tmp/sreoutput
 $ docker run --rm --volume "/tmp/sreoutput:/output" -e BOOK_SLUG='srw_book' captn3m0/google-sre-ebook:latest
 ```
 
-The build for the above Docker image can be audited at <https://cloud.docker.com/swarm/captn3m0/repository/docker/captn3m0/google-sre-ebook/builds>.
+The build for the above Docker image can be audited at <https://hub.docker.com/repository/docker/captn3m0/google-sre-ebook/builds>.
 
 ## macOS
 
