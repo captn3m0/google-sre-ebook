@@ -66,3 +66,7 @@ Requirements:
 # LICENSE
 
 This is licensed under WTFPL. See COPYING file for the full text.
+
+## Extra
+
+I have a list of my E-book publishing related projects at https://captnemo.in/ebooks/.
