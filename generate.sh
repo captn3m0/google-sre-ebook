@@ -74,6 +74,7 @@ pandoc --from=html --to=epub                                 \
     --metadata title="$BOOK_NAME" \
     complete.html
 
+# generate PDF from HTML
 pandoc --from=html --to=pdf                                 \
     --output=../../../../../${BOOK_FILE}.pdf                \
     --metadata title="$BOOK_NAME" \
@@ -97,10 +98,8 @@ pandoc --from=html --to=pdf                                 \
 
 popd
 
-# Generate other format from epub.
-for EXTENSION in mobi pdf; do
-    ebook-convert ${BOOK_FILE}.epub ${BOOK_FILE}.${EXTENSION}
-done
+# Generate mobi using calibre
+ebook-convert ${BOOK_FILE}.epub ${BOOK_FILE}.mobi
 
 # If it works inside docker.
 if [ "$MODE" == "docker" ]; then
