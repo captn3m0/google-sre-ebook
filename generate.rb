@@ -86,8 +86,6 @@ chapter_links.each do |chapter_link|
     content = content.children.at_css('div')
   end
 
-
-
   # replace h1 title
   content.at_css('h1').inner_html = title
 

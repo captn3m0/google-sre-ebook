@@ -46,7 +46,7 @@ The build for the above Docker image can be audited at <https://hub.docker.com/r
 
 ## macOS
 
-Review and run the `bootstrap.sh` script to generate the EPUB, MOBI, and PDF files
+Review and run the `generate.sh` script to generate the EPUB, MOBI, and PDF files
 
 Requirements:
 

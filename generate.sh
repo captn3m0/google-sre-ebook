@@ -12,7 +12,6 @@ export ${BOOKS[${BOOK_SLUG^^}]}
 # Common vars.
 IMGS_DOMAIN="lh3.googleusercontent.com"
 
-#
 # Make sure that links are relative \
 # # Remove the /sre/ directories
 # Save stuff in html/ directory
@@ -42,7 +41,6 @@ if [ "$MODE" != "docker" ];then
     bundle install
 fi
 
-#
 # Add extension to files.
 # That because `pandoc` cannot generate the right `mime type` without the extension.
 # https://github.com/captn3m0/google-sre-ebook/issues/19
@@ -60,7 +58,11 @@ for FILE_NAME_FULL in ${IMGS_FILES}; do
 
 done
 
-#
+if [[ $@ == *'--only-download'* ]]; then
+    echo "Skipping generation"
+    exit 0
+fi
+
 # Generate epub from html.
 echo "Generate book ..."
 bundle exec ruby generate.rb
@@ -69,16 +71,37 @@ pandoc --from=html --to=epub                                 \
     --output=../../../../../${BOOK_FILE}.epub                \
     --epub-metadata=../../../../../metadata/${BOOK_NAME}.xml \
     --epub-cover-image=../../../../../cover/${BOOK_NAME}.jpg \
+    --metadata title="$BOOK_NAME" \
     complete.html
+
+pandoc --from=html --to=pdf                                 \
+    --output=../../../../../${BOOK_FILE}.pdf                \
+    --metadata title="$BOOK_NAME" \
+    --pdf-engine=xelatex \
+    --dpi=300 \
+    -V book \
+    --top-level-division=chapter \
+    --toc \
+    -V lang=en-US \
+    -V classoption=oneside \
+    -V titlepage=true \
+    -V logo=../../../../../cover/${BOOK_NAME}.jpg \
+    -V titlepage-background=../../../../../cover/${BOOK_NAME}.jpg \
+    -V toc-own-page=true \
+    -V footnotes-pretty=true \
+    -V subparagraph \
+    -V geometry=margin=2cm \
+    -V fig_caption=false \
+    --columns=60 \
+    complete.html
+
 popd
 
-#
 # Generate other format from epub.
 for EXTENSION in mobi pdf; do
     ebook-convert ${BOOK_FILE}.epub ${BOOK_FILE}.${EXTENSION}
 done
 
-#
 # If it works inside docker.
 if [ "$MODE" == "docker" ]; then
     chown -v $(id -u):$(id -g) ${BOOK_FILE}.*

@@ -25,6 +25,6 @@ COPY . /src/
 
 RUN bundle install
 
-ENTRYPOINT ["/src/bootstrap.sh", "docker"]
+ENTRYPOINT ["/src/generate.sh", "docker"]
 
 VOLUME ["/output"]
