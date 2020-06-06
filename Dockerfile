@@ -1,5 +1,4 @@
-# LTS Image
-FROM ubuntu:18.04
+FROM debian:buster-slim
 
 LABEL maintainer="github.google-sre-ebook@captnemo.in"
 
@@ -10,12 +9,15 @@ WORKDIR /src
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     calibre \
+    file \
     pandoc \
     ruby \
     ruby-dev \
+    lmodern \
+    texlive-fonts-recommended \
+    texlive-xetex \
     wget \
     zlib1g-dev \
-    file \
     && gem install bundler --no-ri --no-rdoc \
     && gem update --system \
     && apt-get clean \

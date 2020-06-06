@@ -75,10 +75,10 @@ pandoc --from=html --to=epub                                 \
     complete.html
 
 # generate PDF from HTML
-pandoc --from=html --to=pdf                                 \
+pandoc --from=html \
+    --pdf-engine=xelatex \
     --output=../../../../../${BOOK_FILE}.pdf                \
     --metadata title="$BOOK_NAME" \
-    --pdf-engine=xelatex \
     --dpi=300 \
     -V book \
     --top-level-division=chapter \
