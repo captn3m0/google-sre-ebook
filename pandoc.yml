@@ -1,0 +1,154 @@
+from: html+smart
+# reader: may be used instead of from:
+to: pdf
+# writer: may be used instead of to:
+# leave blank for input from stdin, use [] for no input:
+output-file: "file.pdf"
+input-files:
+  - complete.html
+# or you may use input-file: with a single value
+
+# template: book
+standalone: true
+self-contained: true
+
+# note that structured variables may be specified:
+variables:
+  header-includes:
+  - \usepackage{caption}
+  - \captionsetup[figure,table]{labelformat=empty}
+  - \usepackage{longtable}
+  lang: en-US
+  classoption: oneside
+  titlepage: true
+  toc-own-page: true
+  footnotes-pretty: true
+  subparagraph: true
+  geometry: "margin=2cm"
+  fig_caption: false
+  documentclass: book
+  # classoption:
+  #   - twosides
+    # - draft
+
+# metadata values specified here are parsed as literal
+# string text, not markdown:
+# metadata:
+#   author:
+#   - Sam Smith
+#   - Julie Liu
+# metadata-files:
+# - boilerplate.yaml
+# or you may use metadata-file: with a single value
+
+# Note that these take files, not their contents:
+# include-before-body: []
+# include-after-body: []
+# include-in-header: []
+# resource-path: ["."]
+
+# filters will be assumed to be Lua filters if they have
+# the .lua extension, and json filters otherwise.  But
+# the filter type can also be specified explicitly, as shown:
+# filters:
+# - pandoc-citeproc
+# - wordcount.lua
+
+# file-scope: false
+
+# data-dir:
+
+# ERROR, WARNING, or INFO
+verbosity: INFO
+log-file: log.json
+
+# citeproc, natbib, or biblatex
+cite-method: citeproc
+# part, chapter, section, or default:
+top-level-division: chapter
+abbreviations:
+
+pdf-engine: xelatex
+pdf-engine-opts:
+- "-shell-escape"
+# you may also use pdf-engine-opt: with a single option
+# pdf-engine-opt: "-shell-escape"
+
+# auto, preserve, or none
+wrap: auto
+# columns: 78
+dpi: 72
+
+extract-media: mediadir
+
+table-of-contents: true
+toc-depth: 2
+number-sections: false
+# a list of offsets at each heading level
+# number-offset: [0,0,0,0,0,0]
+# toc: may also be used instead of table-of-contents:
+# shift-heading-level-by: 1
+# section-divs: true
+# identifier-prefix: foo
+# title-prefix: ""
+# strip-empty-paragraphs: true
+# # lf, crlf, or native
+# eol: lf
+# strip-comments: false
+# indented-code-classes: []
+# ascii: true
+# default-image-extension: ".jpg"
+
+# # either a style name of a style definition file:
+# highlight-style: pygments
+# syntax-definitions:
+# - c.xml
+# # or you may use syntax-definition: with a single value
+# listings: false
+
+# reference-doc: myref.docx
+
+# # method is plain, webtex, gladtex, mathml, mathjax, katex
+# # you may specify a url with webtex, mathjax, katex
+# html-math-method:
+#   method: mathjax
+#   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+# # none, references, or javascript
+# email-obfuscation: javascript
+
+# tab-stop: 8
+# preserve-tabs: true
+
+# incremental: false
+# slide-level: 2
+
+# epub-subdirectory: EPUB
+# epub-metadata: meta.xml
+# epub-fonts:
+# - foobar.otf
+# epub-chapter-level: 1
+# epub-cover-image: cover.jpg
+
+# reference-links: true
+# # block, section, or document
+# reference-location: block
+# atx-headers: false
+
+# # accept, reject, or all
+# track-changes: accept
+
+# html-q-tags: false
+# css:
+# - site.css
+
+# # none, all, or best
+# ipynb-output: best
+
+# # A list of two-element lists
+# request-headers:
+# - ["User-Agent", "Mozilla/5.0"]
+
+# fail-if-warnings: false
+# dump-args: true
+# ignore-args: false
+trace: false
