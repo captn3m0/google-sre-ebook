@@ -4,7 +4,7 @@ require 'fileutils'
 
 # First we get the list of all the book sections:
 
-Dir.chdir("html/landing.google.com/sre/%s/toc" % ENV['BOOK_NAME'])
+Dir.chdir("html/sre.google/%s/table-of-contents" % ENV['BOOK_NAME'])
 chapter_links = Nokogiri::HTML(open("index.html"))
   .css('#drop-down a')
   .map {|l| l.attribute('href').value}
