@@ -4,7 +4,7 @@ Generates a EPUB/MOBI/PDF for the Google SRE Book/s.
 
 Original sources are downloaded from https://landing.google.com/sre/books
 
-Visit the [Releases](https://github.com/captn3m0/google-sre-ebook/releases) page to download the latest release.
+Visit the [Releases](https://github.com/captn3m0/google-sre-ebook/releases) page to download the latest release. Go through all the releases, and click "Assets" to view a list of files.
 
 # Books
 
@@ -44,9 +44,7 @@ $ docker run --rm --volume "/tmp/sreoutput:/output" -e BOOK_SLUG='srw_book' capt
 
 The build for the above Docker image can be audited at <https://hub.docker.com/repository/docker/captn3m0/google-sre-ebook/builds>.
 
-## macOS
-
-Review and run the `generate.sh` script to generate the EPUB, MOBI, and PDF files
+## macOS / Linux
 
 Requirements:
 
@@ -56,6 +54,16 @@ Requirements:
 - `brew install pandoc`
 - `brew cask install calibre`
 - `brew install wget`
+
+Run either of the following:
+
+```bash
+# To download Site Reliability Engineering.
+BOOK_SLUG='sre_book' ./generate.sh
+
+# To download The Site Reliability Workbook.
+BOOK_SLUG='srw_book' ./generate.sh
+```
 
 # Known Issues
 
