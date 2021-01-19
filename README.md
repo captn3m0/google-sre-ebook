@@ -1,8 +1,6 @@
 # Google SRE Book/s
 
-Generates a EPUB/MOBI/PDF for the Google SRE Book/s.
-
-Original sources are downloaded from https://landing.google.com/sre/books
+Generates a EPUB/MOBI/PDF for the Google SRE Books. Original sources are downloaded from https://sre.google/books/
 
 Visit the [Releases](https://github.com/captn3m0/google-sre-ebook/releases) page to download the latest release. Go through all the releases, and click "Assets" to view a list of files.
 
