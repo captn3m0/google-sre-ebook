@@ -10,6 +10,11 @@ Visit the [Releases](https://github.com/captn3m0/google-sre-ebook/releases) page
 | :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | <a href="https://github.com/captn3m0/google-sre-ebook/releases"><img src="cover/sre-book.jpg" width="320" alt="site reliability engineering cover" /></a> | <a href="https://github.com/captn3m0/google-sre-ebook/releases"><img src="cover/workbook.jpg" width="320" alt="the site reliability workbook cover" /></a> |
 
+The other 2 SRE books are available as PDFs directly from Google:
+
+- [Building Secure & Reliable Systems](https://static.googleusercontent.com/media/sre.google/en/static/pdf/building_secure_and_reliable_systems.pdf)
+- [Training Site Reliability Engineers](https://static.googleusercontent.com/media/sre.google/en/static/pdf/training-sre.pdf)
+
 # Build
 
 ## Docker (Preferred)
