@@ -80,4 +80,4 @@ This is licensed under WTFPL. See COPYING file for the full text.
 
 ## Extra
 
-I have a list of my E-book publishing related projects at https://captnemo.in/ebooks/.
+I have a list of my E-book publishing related projects at https://captnemo.in/ebooks/. Links to other related books can be found at https://github.com/upgundecha/howtheysre#books-1.
