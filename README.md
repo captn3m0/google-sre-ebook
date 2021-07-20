@@ -22,6 +22,10 @@ The other SRE books/reports are available as directly from Google:
 - [Incident Metrics in SRE](https://sre.google/resources/practices-and-processes/incident-metrics-in-sre/) - [[PDF](https://sre.google/static/pdf/incident_metrics_in_sre.pdf)]  [[EPUB](https://sre.google/static/pdf/incident_metrics_in_sre.epub)]
 - [Engineering Reliable Mobile Applications](https://sre.google/resources/practices-and-processes/engineering-reliable-mobile-applications/) - [[PDF](https://sre.google/static/pdf/engineering-reliable-mobile-applications.pdf)]  [[EPUB](https://sre.google/static/pdf/engineering-reliable-mobile-applications-epub.zip)]  [[MOBI](https://sre.google/static/pdf/engineering-reliable-mobile-applications-mobi.zip)]
 
+You might also like:
+
+- [Software Engineering at Google](https://abseil.io/resources/swe_at_google.2.pdf)
+
 # Build
 
 ## Docker (Preferred)
