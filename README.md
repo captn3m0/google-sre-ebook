@@ -62,6 +62,7 @@ The build for the above Docker image can be audited at <https://hub.docker.com/r
 
 Requirements:
 
+- Make
 - Ruby
 - `gem install bundler`
 - `bundle install`
@@ -78,6 +79,33 @@ BOOK_SLUG='sre_book' ./generate.sh
 # To download The Site Reliability Workbook.
 BOOK_SLUG='srw_book' ./generate.sh
 ```
+
+### PDF options
+
+Any option can be passed to `pandoc` by `PDF_OPT_` prefix, for example:
+
+```sh
+PDF_OPT_GEOMETRY=margin=1.5cm \
+PDF_OPT_DOCUMENTCLASS=extbook \
+PDF_OPT_FONTSIZE=14pt \
+PDF_OPT_MAINFONT=LiberationSerif-Regular.ttf \
+PDF_OPT_MAINFONTOPTIONS=BoldFont=LiberationSerif-Bold.ttf,ItalicFont=LiberationSerif-Italic.ttf,BoldItalicFont=LiberationSerif-BoldItalic.ttf \
+PDF_OPT_MONOFONT=LiberationMono-Regular.ttf \
+PDF_OPT_MONOFONTOPTIONS=BoldFont=LiberationMono-Bold.ttf,ItalicFont=LiberationMono-Italic.ttf,BoldItalicFont=LiberationMono-BoldItalic.ttf \
+PDF_OPT_SANSFONT=LiberationSans-Regular.ttf \
+PDF_OPT_SANSFONTOPTIONS=BoldFont=LiberationSans-Bold.ttf,ItalicFont=LiberationSans-Italic.ttf,BoldItalicFont=LiberationSans-BoldItalic.ttf \
+BOOK_SLUG=sre_book ./generate.sh
+```
+
+Default options passed to `pandoc` in `generate.sh` are overloaded by `PDF_OPT_` prefix, see `PDF_OPT_GEOMETRY` in above example.
+
+Fonts in above axample are packed to `fonts-liberation2` on **Ubuntu**.
+
+See more details:
+
+* <https://pandoc.org/MANUAL.html#fonts>
+* <https://ctan.org/pkg/extsizes>
+* <https://ctan.org/pkg/fontspec>
 
 # Known Issues
 

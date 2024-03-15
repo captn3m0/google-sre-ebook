@@ -12,6 +12,13 @@ export ${BOOKS[${BOOK_SLUG^^}]}
 # Common vars.
 IMGS_DOMAIN="lh3.googleusercontent.com"
 
+PDF_OPTIONS=()
+for i in ${!PDF_OPT_*}; do
+    declare -n val=$i
+    key=${i#PDF_OPT_}
+    PDF_OPTIONS+=("-V" "${key,,}=${val}");
+done
+
 # Make sure that links are relative \
 # # Remove the /sre/ directories
 # Save stuff in html/ directory
@@ -96,6 +103,7 @@ pandoc --from=html \
     -V subparagraph \
     -V geometry=margin=2cm \
     -V fig_caption=false \
+    ${PDF_OPTIONS[@]} \
     --columns=60 \
     complete.html
 
