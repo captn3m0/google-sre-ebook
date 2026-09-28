@@ -53,7 +53,7 @@ $ docker run --rm --volume "$(pwd):/output" -e BOOK_SLUG='srw_book' captn3m0/goo
 ```
 $ mkdir /tmp/sreoutput
 $ chcon -Rt svirt_sandbox_file_t /tmp/sreoutput
-$ docker run --rm --volume "/tmp/sreoutput:/output" -e BOOK_SLUG='srw_book' ghcr.io/captn3m0/google-sre-ebook:ruby
+$ docker run --rm --volume "/tmp/sreoutput:/output" -e BOOK_SLUG='srw_book' captn3m0/google-sre-ebook:latest
 ```
 
 Builds on [Docker Hub](https://hub.docker.com/r/captn3m0/google-sre-ebook) are no longer maintained.
