@@ -1,11 +1,5 @@
 version: 2
 updates:
-  - package-ecosystem: pip
-    directory: "/"
-    schedule:
-      interval: weekly
-      time: "04:00"
-      timezone: Asia/Calcutta
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -14,10 +8,6 @@ updates:
       timezone: Asia/Calcutta
   - package-ecosystem: "bundler"
     vendor: true
-    directory: "/"
-    schedule:
-      interval: "weekly"
-  - package-ecosystem: "gitsubmodule"
     directory: "/"
     schedule:
       interval: "weekly"
